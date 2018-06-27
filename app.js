@@ -11,6 +11,10 @@ app.get('/getSanPham', function (req, res) {
 
     res.end(data);
 });
+app.get('/getCaSuy', function (req, res) {
+    var data = fs.readFileSync("./du_lieu/album.json");
+	res.end(data);
+});
 
 app.post('/postUserName', function (req, res) {
     var data = fs.readFileSync("./du_lieu/nguoi_dung.json");
