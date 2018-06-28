@@ -9,23 +9,24 @@ app.use(bodyParser.json())
 app.get('/getSanPham', function (req, res) {
     var data = fs.readFileSync("./du_lieu/san_pham.json");
 
-    res.end(data);
+    res.json(data);
 });
 
 app.get('/getCaSuy/:val', function (req, res) {
     var pageIndex = req.params.val;
     var data = fs.readFileSync("./du_lieu/album.json");
-    res.end(data);
+    res.json(data);
 });
 
 app.post('/postPlus', function (req, res) {
-    if (req.body.a * 1 > 0 && req.body.b * 1 > 0) {
+    if (!isNaN(req.body.a * 1 ) && !isNaN(req.body.b * 1 )) {
+        console.log(req.body.a * 1)
         var total = req.body.a + req.body.b;
         var obj = {
             "total": total
         };
-        res.end(
-            JSON.stringify(obj)
+        res.json(
+            obj
         );
     }
     else {
